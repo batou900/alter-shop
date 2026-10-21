@@ -29,12 +29,19 @@
     align-items:center;
     justify-content:space-between;
     padding:40px 40px 20px;
-    position:sticky;
+    /* fixe (hors du flux) : quand il rétrécit au défilement, la page ne bouge
+       pas. En sticky, la page raccourcissait, le navigateur remontait le
+       défilement sous le seuil et le logo sautait en boucle. */
+    position:fixed;
     top:0;
+    left:0;
+    right:0;
     background:var(--bg);
     z-index:100;
     transition:padding 0.25s ease;
   }
+  /* place réservée = hauteur de l'en-tête déplié (logo 3660×1114 px) */
+  body{padding-top:calc(60px + min(380px, 65vw) / 3.2855);}
   header.compact{
     padding:14px 40px;
   }
@@ -82,6 +89,7 @@
   @media (max-width:720px){
     .grid{grid-template-columns:1fr; gap:48px;}
     header{padding:20px 20px 14px;}
+    body{padding-top:calc(34px + 170px / 3.2855);}
     .logo{width:170px;}
     header.compact{padding:10px 20px;}
     header.compact .logo{width:80px;}
@@ -410,8 +418,9 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
 const siteHeader = document.querySelector('header');
 function onScroll(){
-  if (window.scrollY > 40) { siteHeader.classList.add('compact'); }
-  else { siteHeader.classList.remove('compact'); }
+  // seuils différents à l'aller et au retour : pas d'aller-retour autour d'une valeur
+  if (window.scrollY > 60) { siteHeader.classList.add('compact'); }
+  else if (window.scrollY < 20) { siteHeader.classList.remove('compact'); }
 }
 window.addEventListener('scroll', onScroll, {passive:true});
 onScroll();

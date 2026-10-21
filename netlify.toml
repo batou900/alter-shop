@@ -1,0 +1,4 @@
+# Site statique : pas de build, on publie le dossier du site tel quel.
+# (le site est dans un sous-dossier du dépôt, pas à la racine)
+[build]
+  publish = "alter-shop"
