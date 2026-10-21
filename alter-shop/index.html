@@ -95,8 +95,7 @@
     .logo{width:170px;}
     header.compact{padding:10px 20px;}
     header.compact .logo{width:80px;}
-    main, footer, .legal{padding-left:20px; padding-right:20px;}
-    footer{flex-direction:column; align-items:flex-start; gap:20px;}
+    main, footer{padding-left:20px; padding-right:20px;}
     .bio-header{flex-direction:column; align-items:flex-start; gap:28px;}
     .bio-contact p{font-size:15px;}
     .bio-contact p.row, .bio-contact p.addr{max-width:100%;}
@@ -132,39 +131,28 @@
     margin:0;
   }
 
-  /* ---------- footer ---------- */
+  /* ---------- footer : un seul bloc, colonnes empilées ---------- */
   footer{
-    margin-top:100px;
-    padding:32px 40px 48px;
-    display:flex;
-    justify-content:space-between;
-    flex-wrap:wrap;
-    gap:16px;
+    margin-top:120px;
+    padding:28px 40px 48px;
+    border-top:1px solid var(--line);
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:24px 40px;
     font-size:13px;
-  }
-  footer .left{color:var(--grey); max-width:340px;}
-  footer .left a.visit{
-    display:inline-block;
-    margin-top:2px;
-    color:var(--ink);
-  }
-  footer .left a.visit:hover{color:var(--grey);}
-  footer .flinks{
-    display:flex;
-    gap:24px;
-  }
-  footer .flinks a:hover{color:var(--grey);}
-
-  /* ---------- legal ---------- */
-  .legal{
-    padding:20px 40px 40px;
-    font-size:11px;
-    color:var(--grey);
     line-height:1.6;
   }
-  .legal p{margin:0;}
-  .legal a{text-decoration:underline;}
-  .legal a:hover{color:var(--ink);}
+  footer p{margin:0;}
+  footer .muted{color:var(--grey);}
+  footer .fcol > p.muted:first-child{margin-bottom:6px;}
+  footer .fcol:first-child .muted{max-width:340px; margin-top:6px;}
+  footer a:hover{color:var(--grey);}
+  @media (max-width:900px){
+    footer{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:720px){
+    footer{grid-template-columns:1fr; gap:28px; margin-top:80px;}
+  }
 
   /* ---------- lightbox ---------- */
   .overlay{
@@ -268,14 +256,6 @@
     gap:24px;
     max-width:360px;
   }
-  .footer-bio{
-    font-size:11px;
-    line-height:1.6;
-    color:var(--grey);
-    max-width:280px;
-    text-align:left;
-    margin:0 0 10px;
-  }
   .enquire{
     display:block;
     margin-top:16px;
@@ -297,22 +277,30 @@
 </main>
 
 <footer id="contact">
-  <div class="left">
-    <p class="footer-bio">Alter is a collective based in Brussels, designing and building furniture from reclaimed materials. Each piece is made to order, in our workshop.</p>
-    <a class="visit" href="https://www.google.com/maps/place/ALTER/@50.8234371,4.3024428,17z/data=!4m15!1m8!3m7!1s0x47c3c69dd121f63d:0x7b3830314bfd5e4d!2sPt+Rue+du+Moulin+11,+1070+Bruxelles,+Belgique!3b1!8m2!3d50.8234371!4d4.3024428!16s%2Fg%2F11l6zqsd0l!3m5!1s0x47c3c759c09d9f5b:0x342a3759df1e057f!8m2!3d50.8234312!4d4.3024319!16s%2Fg%2F11zyx04bvh?entry=ttu&amp;g_ep=EgoyMDI2MTAxOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">Come to see us: 11 Petite Rue du Moulin, 1070 Anderlecht →</a>
+  <div class="fcol">
+    <p>Alter ASBL</p>
+    <p class="muted">A collective based in Brussels, designing and building furniture from reclaimed materials. Each piece is made to order, in our workshop.</p>
   </div>
-  <div class="flinks">
-    <a href="https://www.instagram.com/alteralteralteralter/" target="_blank" rel="noopener">Instagram</a>
-    <a href="mailto:admin@alteralteralter.com">Email</a>
-    <a href="https://alteralteralter.com" target="_blank" rel="noopener">Website</a>
+  <div class="fcol">
+    <p class="muted">Visit</p>
+    <p><a href="https://www.google.com/maps/place/ALTER/@50.8234371,4.3024428,17z/data=!4m15!1m8!3m7!1s0x47c3c69dd121f63d:0x7b3830314bfd5e4d!2sPt+Rue+du+Moulin+11,+1070+Bruxelles,+Belgique!3b1!8m2!3d50.8234371!4d4.3024428!16s%2Fg%2F11l6zqsd0l!3m5!1s0x47c3c759c09d9f5b:0x342a3759df1e057f!8m2!3d50.8234312!4d4.3024319!16s%2Fg%2F11zyx04bvh?entry=ttu&amp;g_ep=EgoyMDI2MTAxOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">11 Petite Rue du Moulin<br>1070 Anderlecht, Belgium</a></p>
+  </div>
+  <div class="fcol">
+    <p class="muted">Contact</p>
+    <p><a href="mailto:admin@alteralteralter.com">admin@alteralteralter.com</a></p>
+    <p><a href="tel:+32492683928">+32 492 68 39 28</a></p>
+    <p><a href="https://www.instagram.com/alteralteralteralter/" target="_blank" rel="noopener">Instagram</a></p>
+    <p><a href="https://alteralteralter.com">alteralteralter.com</a></p>
+  </div>
+  <div class="fcol">
+    <p class="muted">Legal</p>
+    <p>BCE 1010.265.193</p>
+    <p>VAT BE 1010.265.193</p>
+    <p>RPM Brussels</p>
+    <p><a href="legal.html">Legal notice &amp; privacy</a></p>
+    <p class="muted">&copy; <span id="year"></span> Alter &middot; No cookies</p>
   </div>
 </footer>
-
-<div class="legal">
-  <p>&copy; <span id="year"></span> Alter. All rights reserved.</p>
-  <p>Alter ASBL &middot; Registered office: 11 Petite Rue du Moulin, 1070 Anderlecht, Belgium &middot; Company no. (BCE/KBO) 1010.265.193 &middot; RPM Brussels &middot; <a href="mailto:admin@alteralteralter.com">admin@alteralteralter.com</a></p>
-  <p><a href="legal.html">Legal notice &amp; privacy</a> &middot; No cookies, no tracking.</p>
-</div>
 
 <div class="overlay" id="overlay">
   <div class="overlay-inner" id="overlayInner"></div>
