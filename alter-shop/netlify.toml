@@ -1,3 +1,0 @@
-# Site statique : pas de build, on publie le dossier tel quel.
-[build]
-  publish = "."
