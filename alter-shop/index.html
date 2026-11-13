@@ -100,14 +100,14 @@
   }
   figure .frame{
     width:100%;
-    aspect-ratio:4/5;
+    aspect-ratio:1/1;
     overflow:hidden;
-    background:#f4f4f4;
   }
+  /* image entière, jamais recadrée : elle tient dans le carré */
   figure img{
     width:100%;
     height:100%;
-    object-fit:cover;
+    object-fit:contain;
     display:block;
     transition:opacity 0.2s ease;
   }
@@ -177,15 +177,15 @@
   }
   .lb-main{
     width:100%;
-    aspect-ratio:4/3;
-    background:#f4f4f4;
-    overflow:hidden;
+    height:min(75vh, 900px);
     margin-bottom:14px;
   }
+  /* format d'origine, sans recadrage */
   .lb-main img{
     width:100%;
     height:100%;
-    object-fit:cover;
+    object-fit:contain;
+    object-position:left center;
     display:block;
   }
   .lb-thumbs{
@@ -197,7 +197,7 @@
   .lb-thumbs img{
     width:70px;
     height:70px;
-    object-fit:cover;
+    object-fit:contain;
     cursor:pointer;
     opacity:0.55;
   }
@@ -216,11 +216,6 @@
     margin:0 0 20px;
   }
   .lb-text .mat:has(+ .mat){margin-bottom:4px;}
-  .lb-text .desc{
-    font-size:14px;
-    line-height:1.65;
-    margin:0;
-  }
   .bio-header{
     display:flex;
     align-items:center;
@@ -280,16 +275,14 @@ const items = [
     year:"2025",
     dims:"",
     instagram:"https://www.instagram.com/p/DaIH4OIiFGe/",
-    desc:"Mobile kitchen on a compact trailer: fold-out stainless steel worktop, sink, stove, built-in storage and a large blue umbrella.",
-    images:["images/marmite-mobile-1.jpg","images/marmite-mobile-2.jpg"]
+    images:["images/marmite-mobile-1.jpg","images/marmite-mobile-2.jpg","images/marmite-mobile-3.jpg","images/marmite-mobile-4.jpg","images/marmite-mobile-5.jpg"]
   },
   {
     name:"Bank DayBed",
-    mat:"Reclaimed curved wood, repurposed metal lockers",
+    mat:"Curved wood from the former Dexia bank by Marcel Lambrichs, repurposed metal lockers",
     year:"2026",
     dims:"",
     instagram:"https://www.instagram.com/p/DXJnI9piI_m/",
-    desc:"Bench or daybed, mechanically assembled with minimal cutting and fully dismountable. Two units join into one large daybed.",
     images:["images/bank-daybed-1.jpg","images/bank-daybed-2.jpg","images/bank-daybed-3.jpg","images/bank-daybed-4.jpg","images/bank-daybed-5.jpg","images/bank-daybed-6.jpg","images/bank-daybed-7.jpg"]
   },
   {
@@ -298,34 +291,30 @@ const items = [
     year:"2025",
     dims:"",
     instagram:"https://www.instagram.com/p/DLktIvtIaNl/",
-    desc:"Shelving frame topped with an opus incertum and terrazzo surface cast from construction waste.",
     images:["images/opus-incertum-shelf-1.jpg","images/opus-incertum-shelf-2.jpg","images/opus-incertum-shelf-3.jpg","images/opus-incertum-shelf-4.jpg"]
   },
   {
-    name:"CCN Slab Big Tables",
+    name:"A very long table",
     mat:"Reclaimed terrazzo slabs, reclaimed concrete blocks, tension straps",
     year:"2025",
-    dims:"Tops in 120 \u00d7 60 cm slabs",
+    dims:"Tops in 120 × 60 cm slabs",
     instagram:"https://www.instagram.com/p/DW3gv6eiFxb/",
-    desc:"Two long tables, one high and one low with steps. Held together by gravity, stacking and straps: no glue, no screws, fully dismountable.",
-    images:["images/ccn-slab-big-tables-1.jpg","images/ccn-slab-big-tables-2.jpg"]
+    images:["images/a-very-long-table-1.jpg","images/a-very-long-table-2.jpg"]
   },
   {
-    name:"A wooden column",
-    mat:"Corten steel",
-    year:"",
+    name:"Stepped Column",
+    mat:"Reclaimed meranti plywood (Batiterre), sanded and finished with linseed oil, pigment, turpentine and siccative; reclaimed concrete blocks as ballast",
+    year:"2026",
     dims:"",
     instagram:"https://www.instagram.com/alteralteralteralter/",
-    desc:"Load-bearing column in corten steel for outdoor wooden furniture.",
-    images:["images/a-wooden-column-1.jpg"]
+    images:["images/stepped-column-1.jpg","images/stepped-column-2.jpg","images/stepped-column-3.jpg","images/stepped-column-4.jpg","images/stepped-column-5.jpg"]
   },
   {
     name:"Conversation Pit",
-    mat:"Reclaimed ventilation boxes, carpet",
+    mat:"Ventilation boxes from the former Dexia bank by Marcel Lambrichs, carpet",
     year:"2026",
     dims:"",
     instagram:"https://www.instagram.com/p/DYxY3gTCLiU/",
-    desc:"Sunken seating: ventilation boxes as backrests, the whole structure wrapped in carpet.",
     images:["images/conversation-pit-1.jpg"]
   }
 ];
@@ -361,7 +350,6 @@ function openLightbox(idx){
         <h2>${item.name}</h2>
         <p class="mat">${item.mat}</p>
         ${(item.dims || item.year) ? `<p class="mat">${[item.dims, item.year].filter(Boolean).join(' · ')}</p>` : ''}
-        <p class="desc">${item.desc}</p>
         ${item.hire
           ? `<a class="enquire" href="mailto:admin@alteralteralter.com?subject=${encodeURIComponent('Booking — ' + item.name)}">Book →</a>`
           : `<a class="enquire" href="mailto:admin@alteralteralter.com?subject=${encodeURIComponent('Enquiry — ' + item.name)}">Enquire →</a>`}
